@@ -3,7 +3,9 @@ pipeline {
     stages {
         stage('Build') { 
             agent {
-                docker {
+                node {
+			checkout scm
+
 			docker.withRegistry('https://registry.hub.docker.com', 'docker') {
 			image = docker.image('python:2-alpine')
 			image.pull()
